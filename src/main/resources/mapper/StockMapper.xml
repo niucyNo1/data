@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.no1.data.mapper.StockMapper">
+    <resultMap id="baseMap" type="com.no1.data.entity.Stock">
+        <id property="stockId" column="stock_id" javaType="int"></id>
+        <result property="stockCode" column="stock_code" javaType="java.lang.String"/>
+        <result property="stockName" column="stock_name" javaType="java.lang.String"/>
+        <result property="purchaseCode" column="purchase_code" javaType="java.lang.String"/>
+        <result property="onlineDistribution" column="online_distribution" javaType="java.lang.Integer"/>
+        <result property="marketCapitalization" column="market_capitalization" javaType="java.lang.Double"/>
+        <result property="purchaseCeiling" column="purchase_ceiling" javaType="java.lang.Double"/>
+        <result property="issuePrice" column="issue_price" javaType="java.lang.Double"/>
+        <result property="latestPrice" column="latest_price" javaType="java.lang.Double"/>
+        <result property="firstDayClose" column="first_day_close" javaType="java.lang.Double"/>
+        <result property="purchaseDate" column="purchase_date" javaType="java.sql.Date"/>
+        <result property="datePublicationWinningNumber" column="date_publication_winning_number" javaType="java.sql.Date"/>
+        <result property="dateSuccessfulPayment" column="date_successful_payment" javaType="java.sql.Date"/>
+        <result property="listingDate" column="listing_date" javaType="java.sql.Date"/>
+        <result property="thawDate" column="thaw_date" javaType="java.sql.Date"/>
+        <result property="announcementDateOnlineSigningRate" column="announcement_date_online_signing_rate" javaType="java.sql.Date"/>
+        <result property="ipoPeRatio" column="ipo_pe_ratio" javaType="java.lang.Double"/>
+        <result property="winningRate" column="winning_rate" javaType="java.lang.Double"/>
+        <result property="totalNum" column="total_num" javaType="java.lang.Integer"/>
+        <result property="moneyForEach" column="money_for_each" javaType="java.lang.Integer"/>
+        <result property="frozenFundsOnline" column="frozen_funds_online" javaType="java.lang.Integer"/>
+        <result property="frozenFundsOffline" column="frozen_funds_offline" javaType="java.lang.Integer"/>
+        <result property="frozenFunds" column="frozen_funds" javaType="java.lang.Integer"/>
+        <result property="sumMoney" column="sum_money" javaType="java.lang.Integer"/>
+        <result property="firstDayOpen" column="first_day_open" javaType="java.lang.Double"/>
+        <result property="firstDayGain" column="first_day_gain" javaType="java.lang.String"/>
+        <result property="turnoverRate" column="turnover_rate" javaType="java.lang.String"/>
+    </resultMap>
+    <resultMap id="itemsMap" type="com.no1.data.entity.StockItems">
+        <id property="itemId" column="itme_id" javaType="int"/>
+        <result property="businessScope" column="business_scope" javaType="java.lang.String"/>
+        <result property="mainBusiness" column="main_business" javaType="java.lang.String"/>
+        <association property="issueStatus" javaType="com.no1.data.entity.IssueStatus">
+            <id property="statusId" column="status_id" javaType="int"/>
+            <result property="stockCode" column="stock_code" javaType="java.lang.String"/>
+            <result property="stockName" column="stock_name" javaType="java.lang.String"/>
+            <result property="purchaseCode" column="purchase_code" javaType="java.lang.String"/>
+            <result property="listingPlace" column="listing_place" javaType="java.lang.String"/>
+            <result property="issuePrice" column="issue_price" javaType="java.lang.Double"/>
+            <result property="ipoPeRatio" column="ipo_pe_ratio" javaType="java.lang.Double"/>
+            <result property="peTatioReferenceIndustry" column="pe_ratio_reference_industry" javaType="java.lang.String"/>
+            <result property="referenceIndustryPeRatio" column="reference_industry_pe_ratio" javaType="java.lang.Double"/>
+            <result property="issueFaceValue" column="issue_face_value" javaType="java.lang.Double"/>
+            <result property="totalActualFundRaised" column="total_actual_fund_raised" javaType="java.lang.Double"/>
+            <result property="onlineReleaseDate" column="online_release_date" javaType="java.sql.Date"/>
+            <result property="offlineDistributionDate" column="offline_distribution_date" javaType="java.sql.Date"/>
+            <result property="numberOnlineIssuance" column="number_online_issuance" javaType="java.lang.Integer"/>
+            <result property="offlineDistributionQuantity" column="offline_distribution_quantity" javaType="java.lang.Integer"/>
+            <result property="numberOldStockTransfers" column="number_old_stock_transfers" javaType="java.lang.Integer"/>
+            <result property="totalIssueQuantity" column="total_issue_quantity" javaType="java.lang.Integer"/>
+            <result property="purchaseLimit" column="purchase_limit" javaType="java.lang.Integer"/>
+            <result property="paymentDate" column="payment_date" javaType="java.sql.Date"/>
+            <result property="onlineMarketCapitalization" column="online_market_capitalization" javaType="java.lang.Double"/>
+            <result property="onlinePurchaseMarketValueConfirmDate" column="online_purchase_market_value_confirm_date" javaType="java.sql.Date"/>
+            <result property="offlinePurchaseMarketValue" column="offline_purchase_market_value" javaType="java.lang.Double"/>
+            <result property="offlinePurchaseMarketValueConfirmDate" column="offline_purchase_market_value_confirm_date" javaType="java.sql.Date"/>
+        </association>
+        <association property="issueMode" javaType="com.no1.data.entity.IssueMode">
+            <id property="modeId" column="mode_id" javaType="int"/>
+            <result property="modeType" column="mode_type" javaType="java.lang.String"/>
+            <result property="modeDescrip" column="mode_descrip" javaType="java.lang.String"/>
+        </association>
+        <association property="purchaseStatus" javaType="com.no1.data.entity.PurchaseStatus">
+            <id property="statusId" column="status_id" javaType="int"/>
+            <result property="openDate" column="open_date" javaType="java.sql.Date"/>
+            <result property="listingDate" column="listing_date" javaType="java.sql.Date"/>
+            <result property="lotteryRateOnlineDistribution" column="lottery_rate_online_distribution" javaType="java.lang.Double"/>
+            <result property="lotteryRateOfflineDistribution" column="lottery_rate_offline_distribution" javaType="java.lang.Double"/>
+            <result property="dateAnnouncementResultSuccessfulSignature" column="date_announcement_result_successful_signature" javaType="java.sql.Date"/>
+            <result property="subscriptionMultiplesOfflineDistribution" column="subscription_multiples_offline_distribution" javaType="java.lang.Double"/>
+            <result property="accumulatedNumberQuotedShares" column="accumulated_number_quoted_shares" javaType="java.lang.Double"/>
+            <result property="accumulativeQuotationMultiple" column="accumulative_quotation_multiple" javaType="java.lang.Double"/>
+            <result property="numberValidOnlineSubscribers" column="number_valid_online_subscribers" javaType="java.lang.Integer"/>
+            <result property="numberValidOfflineSubscribers" column="number_valid_offline_subscribers" javaType="java.lang.Integer"/>
+            <result property="numberEffectiveSharesPurchasedOnline" column="number_effective_shares_purchased_online" javaType="java.lang.Double"/>
+            <result property="numberEffectiveSharesPurchasedOffline" column="number_effective_shares_purchased_offline" javaType="java.lang.Double"/>
+        </association>
+        <association property="underwriter" javaType="com.no1.data.entity.Underwriter">
+            <id property="underwriterId" column="underwriter_id" javaType="int"/>
+            <result property="leadUnderwriter" column="lead_underwriter" javaType="java.lang.String"/>
+            <result property="underwriterManner" column="underwriter_manner" javaType="java.lang.String"/>
+            <result property="dividendPolicy" column="dividend_policy" javaType="java.lang.String"/>
+            <result property="preissueNetAssetsPerShare" column="preissue_net_assets_per_share" javaType="java.lang.Double"/>
+            <result property="netAssetsPerShareAfterIssuance" column="net_assets_per_share_after_issuance" javaType="java.lang.Double"/>
+        </association>
+        <association property="ballotNumber" javaType="com.no1.data.entity.BallotNumber">
+            <id property="ballotNumberId" column="ballot_number_id" javaType="int"/>
+            <result property="lastFourDigits" column="last_four_digits" javaType="java.lang.String"/>
+            <result property="lastFiveDigits" column="last_five_digits" javaType="java.lang.String"/>
+            <result property="lastSixDigits" column="last_six_digits" javaType="java.lang.String"/>
+            <result property="lastSevenDigits" column="last_seven_digits" javaType="java.lang.String"/>
+            <result property="lastEightDigits" column="last_eight_digits" javaType="java.lang.String"/>
+            <result property="lastNineDigits" column="last_nine_digits" javaType="java.lang.String"/>
+        </association>
+        <association property="firstDayPerformance" javaType="com.no1.data.entity.FirstDayPerformance">
+            <id property="performanceId" column="performance_id" javaType="int"/>
+            <result property="openPrice" column="open_price" javaType="java.lang.Double"/>
+            <result property="closePrice" column="close_price" javaType="java.lang.Double"/>
+            <result property="openPremium" column="open_premium" javaType="java.lang.Double"/>
+            <result property="closingGains" column="closing_gains" javaType="java.lang.Double"/>
+            <result property="turnoverRate" column="turnover_rate" javaType="java.lang.Double"/>
+            <result property="maximumIncrease" column="maximum_increase" javaType="java.lang.Double"/>
+            <result property="firstDayOpenDate" column="first_day_open_date" javaType="java.sql.Date"/>
+            <result property="totalGains" column="total_gains" javaType="java.lang.Double"/>
+            <result property="continuousWordBoardsNumber" column="continuous_word_boards_number" javaType="java.lang.Integer"/>
+            <result property="openDayAveragePrice" column="open_day_average_price" javaType="java.lang.Double"/>
+            <result property="everyOneMakesProfit" column="every_one_makes_profit" javaType="java.lang.Integer"/>
+        </association>
+    </resultMap>
+    <select id="findByPage" resultMap="baseMap" parameterType="java.util.Map">
+        select * from stock t
+        <if test="sortValue != null and sortValue!= '' and sortOrder !=null and sortOrder !=''">
+            ORDER BY ${sortValue} ${sortOrder}</if>
+    </select>
+    <select id="findItems" parameterType="java.lang.String" resultMap="itemsMap">
+        SELECT * from stock_items as si
+LEFT JOIN issue_status as iss ON si.issue_status=iss.status_id
+LEFT JOIN issue_mode as im ON si.issue_mode=im.mode_id
+LEFT JOIN purchase_status as ps ON si.purchase_status=ps.status_id
+LEFT JOIN underwriter as u on si.items_underwriter=u.underwriter_id
+LEFT JOIN ballot_number as bn on si.items_ballot=bn.ballot_number_id
+LEFT JOIN first_day_performance as fdp on si.items_perform=fdp.performance_id
+  where si.stock_code=#{stockCode}
+    </select>
+    <select id="findByTime" parameterType="java.util.Map" resultMap="baseMap">
+        select * from stock t where 1=1
+        <if test="puchaseDate!=null">and purchase_date=#{puchaseDate}</if>
+        <if test="datePublicationWinningNumber!=null">and date_publication_winning_number=#{datePublicationWinningNumber}</if>
+        <if test="thawDate!=null">and thaw_date=#{thawDate}</if>
+        <if test="listingDate!=null">and listing_date=#{listingDate}</if>
+        <if test="announcementDateOnlineSigningRate!=null">and announcement_date_online_signing_rate=#{announcementDateOnlineSigningRate}</if>
+    </select>
+</mapper>

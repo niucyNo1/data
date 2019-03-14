@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.no1.data.mapper.ResearchReportMapper">
+    <resultMap id="baseMap" type="com.no1.data.entity.ResearchReport">
+        <id property="reportId" column="report_id" javaType="int"></id>
+        <result property="reportTitle" column="report_title" javaType="java.lang.String"></result>
+        <result property="organizationName" column="organization_name" javaType="java.lang.String"></result>
+        <result property="ratingChange" column="rating_change" javaType="java.lang.String"></result>
+        <result property="ratingCategory" column="rating_category" javaType="java.lang.String"></result>
+        <result property="reportDate" column="report_date" javaType="java.sql.Date"></result>
+    </resultMap>
+    <select id="findByIndustry" resultMap="baseMap" parameterType="int">
+        select * from research_report t where t.report_industry=#{sectionId}
+    </select>
+</mapper>

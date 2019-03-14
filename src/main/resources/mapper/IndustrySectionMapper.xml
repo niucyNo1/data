@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.no1.data.mapper.IndustrySectionMapper">
+
+    <resultMap id="baseMap" type="com.no1.data.entity.IndustrySection">
+        <id property="sectionId" column="section_id" javaType="int"></id>
+        <result property="sectionName" column="section_name" javaType="java.lang.String"></result>
+        <result property="latestPrice" column="latest_price" javaType="java.lang.Double"></result>
+        <result property="upDownLimit" column="up_down_limit" javaType="java.lang.Double"></result>
+        <result property="upDownRange" column="up_down_range" javaType="java.lang.String"></result>
+        <result property="totalMarketValue" column="total_market_value" javaType="java.lang.Double"></result>
+        <result property="totalMarketUnit" column="total_market_unit" javaType="java.lang.String"></result>
+        <result property="turnoverRate" column="turnover_rate" javaType="java.lang.String"></result>
+        <result property="risingNumber" column="rising_number" javaType="java.lang.Integer"></result>
+        <result property="dropNumber" column="drop_number" javaType="java.lang.Integer"></result>
+        <result property="leadingStock" column="leading_stock" javaType="java.lang.String"></result>
+        <result property="upDowns" column="up_downs" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="findAll" resultMap="baseMap" parameterType="java.util.Map">
+        SELECT t.* FROM industry_section t
+        <if test="sortValue != null and sortValue!= '' and sortOrder !=null and sortOrder !=''">
+            ORDER BY ${sortValue} ${sortOrder}</if>
+    </select>
+</mapper>

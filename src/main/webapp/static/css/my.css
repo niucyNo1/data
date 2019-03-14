@@ -1,0 +1,13 @@
+#div th{
+    vertical-align: middle;
+    text-align: center;
+    width: 200px;
+    background-color:#f5f6f5;
+    border-color: #bad4e8;
+}
+
+#div td{
+    vertical-align: middle;
+    text-align: center;
+    border-color: #bad4e8;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.no1.data.mapper.NewStockMarketMapper">
+    <resultMap id="baseMap" type="com.no1.data.entity.NewStockMarket">
+        <id property="newStockId" column="new_stock_id" javaType="int"></id>
+        <result property="corporateName" column="corporate_name" javaType="java.lang.String"></result>
+        <result property="declarationDate" column="declaration_date" javaType="java.sql.Date"></result>
+        <result property="meetDate" column="meet_date" javaType="java.sql.Date"></result>
+        <result property="purchaseDate" column="purchase_date" javaType="java.sql.Date"></result>
+        <result property="currentState" column="current_state" javaType="java.lang.String"></result>
+        <result property="quantityIssued" column="quantity_issued" javaType="java.lang.Double"></result>
+        <result property="placeListed" column="place_listed" javaType="java.lang.String"></result>
+        <result property="underwriter" column="underwriter" javaType="java.lang.String"></result>
+    </resultMap>
+    <select id="findAll" resultMap="baseMap" parameterType="java.util.Map">
+        select * from new_stock_market t
+        <if test="sortValue != null and sortValue!= '' and sortOrder !=null and sortOrder !=''">
+            ORDER BY ${sortValue} ${sortOrder}</if>
+    </select>
+</mapper>
